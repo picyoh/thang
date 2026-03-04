@@ -11,10 +11,6 @@ import "../styles/global.css";
   body {
     position: relative;
     box-sizing: border-box;
-    font-family: var(--text-font);
-    color: var(--font-color);
-    background: radial-gradient(circle 4px, var(--dark-neutral), var(--neutral))
-      round;
     background-size: 48px 48px;
     background-position: 24px 24px;
   }
@@ -26,11 +22,11 @@ import "../styles/global.css";
     <meta name="viewport" content="width=device-width" />
     <meta http-equiv="refresh" />
     <meta name="generator" content={Astro.generator} />
-    <title>Quaeres</title>
+    <title>Thang</title>
     <base href={import.meta.env.BASE_URL} />
   </head>
-  <body class="no-spacing">
-    <main class="m-padding"></main>
+  <body>
+    <main></main>
     <slot />
   </body>
 </html>
