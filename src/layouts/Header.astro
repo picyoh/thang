@@ -2,13 +2,17 @@
 import { Icon } from "astro-icon/components";
 ---
 
-<header class="border border">
+<header class="flex border border">
   <a href="/thang">
     <h1>Thang</h1>
   </a>
+  <Icon name="material-symbols:calendar-month-rounded" />
   <span id="date"></span>
+  <Icon name="material-symbols:nest-clock-farsight-analog-outline-rounded" />
   <span id="time"></span>
-  <Icon name="iconoir:sound-low-solid" />
+  <Icon name="material-symbols:no-sound-rounded" />
+  <Icon name="material-symbols:terminal-2-rounded" />
+  <Icon name="material-symbols:keyboard-rounded" />
 </header>
 
 <script src="/src/utils/time.ts" />

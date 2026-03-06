@@ -6,7 +6,7 @@
       "name": "thang",
       "dependencies": {
         "@fontsource/mononoki": "^5.2.5",
-        "@iconify-json/iconoir": "^1.2.10",
+        "@iconify-json/material-symbols": "^1.2.60",
         "@tailwindcss/vite": "^4.2.1",
         "astro": "5.18.0",
         "astro-icon": "^1.1.5",
@@ -98,7 +98,7 @@
 
     "@fontsource/mononoki": ["@fontsource/mononoki@5.2.5", "", {}, "sha512-sTHgfpalruDdThonH0GSIBzFqXm2/T0iCuegLrL15ql9XtpGk+aBsmvcnfwnffHQoGaP1QHQMb3Dt9daZ2Nncg=="],
 
-    "@iconify-json/iconoir": ["@iconify-json/iconoir@1.2.10", "", { "dependencies": { "@iconify/types": "*" } }, "sha512-NnbdB9S5G++6wE5aEZhzpFR0HRcaZFSbJJIHOGF2axaNVKnSUs4NBW2z0uhZnM00iUkiK848Sp81EZPg52DL+w=="],
+    "@iconify-json/material-symbols": ["@iconify-json/material-symbols@1.2.60", "", { "dependencies": { "@iconify/types": "*" } }, "sha512-bmVrnz/9KJNh/j+nO3pyxzo0h8iENIKxv5RASDURhjKdPI53rRcKN7E2Gmwi25k9CBJ+IC6L9l0AGgngeqyRuw=="],
 
     "@iconify/tools": ["@iconify/tools@4.2.0", "", { "dependencies": { "@iconify/types": "^2.0.0", "@iconify/utils": "^2.3.0", "cheerio": "^1.1.2", "domhandler": "^5.0.3", "extract-zip": "^2.0.1", "local-pkg": "^1.1.2", "pathe": "^2.0.3", "svgo": "^3.3.2", "tar": "^7.5.2" } }, "sha512-WRxPva/ipxYkqZd1+CkEAQmd86dQmrwH0vwK89gmp2Kh2WyyVw57XbPng0NehP3x4V1LzLsXUneP1uMfTMZmUA=="],
 
