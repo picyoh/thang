@@ -2,17 +2,30 @@
 import { Icon } from "astro-icon/components";
 ---
 
-<header class="flex border border">
+<header class="flex justify-between item-center border border">
+  <div></div>
   <a href="/thang">
     <h1>Thang</h1>
   </a>
-  <Icon name="material-symbols:calendar-month-rounded" />
-  <span id="date"></span>
-  <Icon name="material-symbols:nest-clock-farsight-analog-outline-rounded" />
-  <span id="time"></span>
-  <Icon name="material-symbols:no-sound-rounded" />
-  <Icon name="material-symbols:terminal-2-rounded" />
-  <Icon name="material-symbols:keyboard-rounded" />
+  <div class="flex justify-between align-center text-center">
+    <div class="flex align-center">
+      <Icon name="material-symbols:calendar-month-rounded" size={24}/>
+      <span id="date"></span>
+    </div>
+    <div class="flex align-center text-center">
+      <Icon name="material-symbols:nest-clock-farsight-analog-outline-rounded" size={24}/>
+      <span id="time"></span>
+    </div>
+    <div class="flex">
+      <Icon name="material-symbols:keyboard-rounded" size={24}/>
+      <span>FR</span>
+    </div>
+    <div class="flex">
+      <Icon name="material-symbols:no-sound-rounded" size={24}/>
+      <Icon name="material-symbols:terminal-2-rounded" size={24}/>
+
+    </div>
+  </div>
 </header>
 
-<script src="/src/utils/time.ts" />
+<script src="/src/utils/time.ts"></script>
