@@ -2,28 +2,34 @@
 import { Icon } from "astro-icon/components";
 ---
 
-<header class="flex justify-between item-center border border">
-  <div></div>
-  <a href="/thang">
-    <h1>Thang</h1>
-  </a>
+<header class="relative flex justify-between item-center border border">
+  <div>
+    <Icon name="material-symbols:arrow-circle-down-rounded" size={24} />
+  </div>
+  <div class="absolute w-fit m-auto left-0 right-0">
+    <a href="/thang">
+      <h1>Thang</h1>
+    </a>
+  </div>
   <div class="flex justify-between align-center text-center">
     <div class="flex align-center">
-      <Icon name="material-symbols:calendar-month-rounded" size={24}/>
+      <Icon name="material-symbols:calendar-month-rounded" size={24} />
       <span id="date"></span>
     </div>
     <div class="flex align-center text-center">
-      <Icon name="material-symbols:nest-clock-farsight-analog-outline-rounded" size={24}/>
+      <Icon
+        name="material-symbols:nest-clock-farsight-analog-outline-rounded"
+        size={24}
+      />
       <span id="time"></span>
     </div>
     <div class="flex">
-      <Icon name="material-symbols:keyboard-rounded" size={24}/>
+      <Icon name="material-symbols:keyboard-rounded" size={24} />
       <span>FR</span>
     </div>
     <div class="flex">
-      <Icon name="material-symbols:no-sound-rounded" size={24}/>
-      <Icon name="material-symbols:terminal-2-rounded" size={24}/>
-
+      <Icon name="material-symbols:no-sound-rounded" size={24} />
+      <Icon name="material-symbols:terminal-2-rounded" size={24} />
     </div>
   </div>
 </header>

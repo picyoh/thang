@@ -1,13 +1,19 @@
+function reformatTime(element: number) {
+  let currentEl = "";
+  element.toString().length === 1
+    ? (currentEl = `0${element}`)
+    : (currentEl = element.toString());
+  return currentEl;
+}
+
 const dateSpan = document.getElementById("date");
 // Get Date
 function getDate() {
   const date = new Date();
-  const day = date.getDate();
-  const currentDay = day.toString().length === 1 ? `0${day}` : day;
-  const month = date.getMonth() + 1;
-  const currentMonth = month.toString().length === 1 ? `0${month}` : month;
-  const year = date.getFullYear();
-  const currentDate = `${currentDay}-${currentMonth}-${year}`;
+  const day = reformatTime(date.getDate());
+  const month = reformatTime(date.getMonth() + 1);
+  const year = reformatTime(date.getFullYear());
+  const currentDate = `${day}-${month}-${year}`;
   dateSpan!.textContent = currentDate;
 }
 
@@ -15,14 +21,10 @@ const timeSpan = document.getElementById("time");
 
 function getTime() {
   const date = new Date();
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
-  const currentMinutes =
-    minutes.toString().length === 1 ? `0${minutes}` : minutes;
-  const seconds = date.getSeconds();
-  const currentSeconds =
-    seconds.toString().length === 1 ? `0${seconds}` : seconds;
-  const currentTime = `${hours}:${currentMinutes}:${currentSeconds}`;
+  const hours = reformatTime(date.getHours());
+  const minutes = reformatTime(date.getMinutes());
+  const seconds = reformatTime(date.getSeconds());
+  const currentTime = `${hours}:${minutes}:${seconds}`;
   timeSpan!.textContent = currentTime;
   setTimeout(() => {
     getTime();
