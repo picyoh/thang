@@ -3,8 +3,9 @@ import { Icon } from "astro-icon/components";
 ---
 
 <header class="relative flex justify-between item-center border border">
-  <div>
-    <Icon name="material-symbols:arrow-circle-down-rounded" size={24} />
+  <div class="size-fit">
+    <input class="appearance-none absolute z-1 h-full w-6" type="checkbox" id="menu">
+    <Icon name="material-symbols:arrow-drop-down-circle" size={24} />
   </div>
   <div class="absolute w-fit m-auto left-0 right-0">
     <a href="/thang">
@@ -28,10 +29,16 @@ import { Icon } from "astro-icon/components";
       <span>FR</span>
     </div>
     <div class="flex">
-      <Icon name="material-symbols:no-sound-rounded" size={24} />
       <Icon name="material-symbols:terminal-2-rounded" size={24} />
+      <Icon name="material-symbols:no-sound-rounded" size={24} />
     </div>
   </div>
 </header>
 
-<script src="/src/utils/time.ts"></script>
+<script src="/src/utils/time.ts" />
+<script>
+  const menuInput = document.getElementById("menu") as HTMLInputElement;
+  menuInput?.addEventListener("change",(e)=>{
+    console.log(menuInput.checked)
+  })
+</script>

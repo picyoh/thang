@@ -1,0 +1,24 @@
+---
+const user = "user";
+const host = "Thang";
+let location = "~";
+---
+
+<form id="terminal" class="flex border">
+  <label class="flex">
+    <span class="text-red-400 w-fit w-min">[</span>
+    <span class="text-green-200">{user}</span>
+    <span class="text-red-400">@</span>
+    <span>{host}</span>
+    <span class="text-red-400">]:</span>
+    <span class="text-red-400">{location}</span>
+    <span class="text-red-400">$</span>
+  </label>
+  <input
+    class="border-none focus:outline-0"
+    type="text"
+    id="terminalInput"
+    autocomplete="off"
+    autocapitalize="off"
+  />
+</form>
