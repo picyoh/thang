@@ -2,23 +2,64 @@
 const user = "user";
 const host = "Thang";
 let location = "~";
+const { id } = Astro.props;
 ---
 
-<form id="terminal" class="flex">
-  <label class="flex" for="terminalInput">
-    <span class="text-red-400">[</span>
-    <span class="text-green-200">{user}</span>
-    <span class="text-red-400">@</span>
-    <span class="text-blue-200">{host}</span>
-    <span class="text-red-400">]:</span>
-    <span class="text-red-400">{location}</span>
-    <span class="text-red-400">$&nbsp;</span>
-    <input
-      class="border-none focus:outline-0"
-      type="text"
-      id="terminalInput"
-      autocomplete="off"
-      autocapitalize="off"
-    />
-  </label>
-</form>
+<command-line>
+  <form id={id} class="flex">
+    <label class="flex">
+      <span class="text-red-400">[</span>
+      <span class="text-green-200">{user}</span>
+      <span class="text-red-400">@</span>
+      <span class="text-blue-200">{host}</span>
+      <span class="text-red-400">]:{location}$&nbsp;</span>
+      <input
+        class="border-none focus:outline-0"
+        type="text"
+        id=`input-${id}`
+        autocomplete="off"
+        autocapitalize="off"
+      />
+    </label>
+  </form>
+</command-line>
+
+<script>
+  import { actions } from "astro:actions";
+
+  class CommandLine extends HTMLElement {
+    connectedCallback() {
+      const form = this.querySelector("form");
+      const input = this.querySelector("input");
+      input!.addEventListener("keydown", async (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          const value = input!.value.toString();
+          const { data, error } = await actions.checkCommand({ value });
+          if (!error) {
+            const span = document.createElement("p");
+            span.classList = "response";
+            span.innerHTML = data;
+            form?.parentElement?.insertAdjacentElement("afterend", span);
+            const cli = form?.parentNode;
+            cloneCLI(cli)
+          }
+        }
+      });
+    }
+  }
+  customElements.define("command-line", CommandLine);
+
+  function cloneCLI(cli: ParentNode | null | undefined) {
+    const clone = cli?.cloneNode(true) as HTMLElement;
+    const clonedForm = clone.firstElementChild;
+    const newId= (parseInt(clonedForm!.id) + 1).toString();
+    clonedForm!.id = newId;
+    const clonedInput = clonedForm?.querySelector("input");
+    clonedInput!.id = `form-${newId}`;
+    clonedInput!.value = "";
+    const parent = cli?.parentElement;
+    parent?.insertAdjacentElement("beforeend", clone)
+    clonedInput?.focus()
+  }
+</script>

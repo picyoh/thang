@@ -1,23 +1,12 @@
 ---
-import CommandLine from "./CommandLine.astro";
-
+export const prerender = false;
 const title = "Terminal";
+import CommandLine from "./CommandLine.astro";
 ---
 
-<div id="terminal" class="border">
-  <h1 class="text-center border-b">{title}</h1>
-
-  <CommandLine /> 
-</div>
-
-<script>
-  const terminal = document.getElementById("terminal")
-  const input = document.getElementById("terminalInput");
-  input!.addEventListener("keydown", (e) => {
-    // Handle user input
-    if(e.key === "Enter"){
-      e.preventDefault();
-      console.log("ok")
-    }
-  });
-</script>
+<terminal-container>
+  <div id={title} class="border">
+    <h1 class="text-center border-b">{title}</h1>
+    <CommandLine id="0"/>
+  </div>
+</terminal-container>
