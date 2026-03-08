@@ -1,24 +1,23 @@
 ---
-const user = "user";
-const host = "Thang";
-let location = "~";
+import CommandLine from "./CommandLine.astro";
+
+const title = "Terminal";
 ---
 
-<form id="terminal" class="flex border">
-  <label class="flex">
-    <span class="text-red-400 w-fit w-min">[</span>
-    <span class="text-green-200">{user}</span>
-    <span class="text-red-400">@</span>
-    <span>{host}</span>
-    <span class="text-red-400">]:</span>
-    <span class="text-red-400">{location}</span>
-    <span class="text-red-400">$</span>
-  </label>
-  <input
-    class="border-none focus:outline-0"
-    type="text"
-    id="terminalInput"
-    autocomplete="off"
-    autocapitalize="off"
-  />
-</form>
+<div id="terminal" class="border">
+  <h1 class="text-center border-b">{title}</h1>
+
+  <CommandLine /> 
+</div>
+
+<script>
+  const terminal = document.getElementById("terminal")
+  const input = document.getElementById("terminalInput");
+  input!.addEventListener("keydown", (e) => {
+    // Handle user input
+    if(e.key === "Enter"){
+      e.preventDefault();
+      console.log("ok")
+    }
+  });
+</script>
