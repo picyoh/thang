@@ -1,12 +1,9 @@
 ---
-export const prerender = false;
-const title = "Terminal";
 import CommandLine from "./CommandLine.astro";
+const {title, flex, height} = Astro.props;
 ---
 
-<terminal-container>
-  <div id={title} class="border">
+  <div id={title} class=`border min-h-72`>
     <h1 class="text-center border-b">{title}</h1>
     <CommandLine id="0"/>
   </div>
-</terminal-container>
