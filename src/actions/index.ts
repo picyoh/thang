@@ -17,9 +17,19 @@ export const server = {
           break;
         case "tree":
           break;
+        case "cat":
+          break;
         case "neofetch":
           break;
         case "pipewire":
+          break;
+        case "clearHistory":
+          break;
+
+        case "sudo":
+        case "chmod":
+        case "mkdir":
+          response = "You haven't right to do that! ;)";
           break;
         default:
           response = "Sorry wrong command";
