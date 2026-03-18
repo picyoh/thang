@@ -1,10 +1,11 @@
 ---
 //TODO: add meta tags and description
-import "../styles/global.css"
+import "../styles/global.css";
 
-import Header from "./Header.astro"
+import Header from "./Header.astro";
+import Footer from "./Footer.astro";
 
-const description = "mocked description"
+const description = "mocked description";
 ---
 
 <!DOCTYPE html>
@@ -21,5 +22,6 @@ const description = "mocked description"
 	<body class="font-mono bg-stone-800 text-stone-100">
 		<Header />
 		<slot />
+		<Footer />
 	</body>
 </html>
