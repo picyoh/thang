@@ -1,9 +1,19 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import mkcert from "vite-plugin-mkcert"
+
+import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
-    site: "https://www.thang.fr",
-    base: "/",
-    trailingSlash: "always",
+  site: "https://www.thang.fr",
+  base: "/",
+  trailingSlash: "always",
+
+  vite: {
+    plugins: [
+        mkcert(),
+        tailwindcss()
+    ]
+  }
 });

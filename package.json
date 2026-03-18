@@ -13,8 +13,10 @@
   },
   "dependencies": {
     "@fontsource/mononoki": "^5.2.5",
+    "@tailwindcss/vite": "^4.2.1",
     "astro": "^6.0.5",
-    "astro-icon": "^1.1.5"
+    "astro-icon": "^1.1.5",
+    "tailwindcss": "^4.2.1"
   },
   "devDependencies": {
     "vite-plugin-mkcert": "^1.17.10"
