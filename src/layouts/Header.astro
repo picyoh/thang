@@ -3,16 +3,19 @@ import { Icon } from "astro-iconify";
 ---
 
 <header class="relative flex justify-between item-center border">
-  <span class="flex">
+  <div class="flex">
     <a href="/" class="text-center w-4 border">1</a>
     <a href="/gui" class="text-center w-4 border">2</a>
-  </span>
+  </div>
 
   <a href="/" class="absolute w-fit m-auto left-0 right-0">
     <h1>Thang</h1>
   </a>
 
-  <span class="flex">
+  <div class="flex">
+    <span class="flex items-center">
+      <Icon name="material-symbols:no-sound-rounded" size={18} />
+    </span>
     <span class="flex items-center">
       <Icon
         name="material-symbols:nest-clock-farsight-analog-outline-rounded"
@@ -24,10 +27,7 @@ import { Icon } from "astro-iconify";
       <Icon name="material-symbols:calendar-month-rounded" size={18} />
       <span id="date"></span>
     </span>
-    <span class="flex items-center">
-      <Icon name="material-symbols:no-sound-rounded" size={18} />
-    </span>
-  </span>
+</div>
 </header>
 
 <script src="/src/utils/time"></script>

@@ -8,20 +8,20 @@ import Footer from "./Footer.astro";
 const description = "mocked description";
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content={description} />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Thang</title>
-	</head>
-	<body class="font-mono bg-stone-800 text-stone-100">
-		<Header />
-		<slot />
-		<Footer />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Thang</title>
+  </head>
+  <body class="font-mono bg-stone-800 text-stone-100">
+    <Header />
+    <slot />
+    <Footer />
+  </body>
 </html>
