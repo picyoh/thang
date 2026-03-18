@@ -8,7 +8,7 @@ import { Icon } from "astro-iconify";
       <a href="/gui" class="text-center w-4 border">2</a>
   </span>
 
-  <a href="/">
+  <a href="/" class="absolute w-fit m-auto left-0 right-0">
     <h1>Thang</h1>
   </a>
   
@@ -26,7 +26,8 @@ import { Icon } from "astro-iconify";
     </span>
     <span class="flex items-center">
       <Icon name="material-symbols:no-sound-rounded" size={18} />
-      <span id="date"></span>
     </span>
   </span>
 </header>
+
+<script src="/src/utils/time"/>
