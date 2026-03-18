@@ -1,0 +1,32 @@
+---
+import { Icon } from "astro-iconify";
+---
+
+<header class="relative flex justify-between item-center border">
+  <span class="flex">
+      <a href="/" class="text-center w-4 border">1</a>
+      <a href="/gui" class="text-center w-4 border">2</a>
+  </span>
+
+  <a href="/">
+    <h1>Thang</h1>
+  </a>
+  
+  <span class="flex">
+    <span class="flex items-center">
+      <Icon
+        name="material-symbols:nest-clock-farsight-analog-outline-rounded"
+        size={18}
+      />
+      <span id="time"></span>
+    </span>
+    <span class="flex items-center">
+      <Icon name="material-symbols:calendar-month-rounded" size={18} />
+      <span id="date"></span>
+    </span>
+    <span class="flex items-center">
+      <Icon name="material-symbols:no-sound-rounded" size={18} />
+      <span id="date"></span>
+    </span>
+  </span>
+</header>

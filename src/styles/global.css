@@ -1,1 +1,6 @@
 @import "tailwindcss";
+@import "@fontsource/mononoki";
+
+@theme {
+  --font-mono: "Mononoki", sans-serif;
+}

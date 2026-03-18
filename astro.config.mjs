@@ -10,7 +10,6 @@ export default defineConfig({
     base: "/",
     trailingSlash: "always",
 
-
     vite: {
         plugins: [
             mkcert(),
