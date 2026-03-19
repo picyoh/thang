@@ -1,3 +1,5 @@
+// TODO: add short formats option
+
 function reformatTime(element: number) {
   let currentEl = "";
   element.toString().length === 1

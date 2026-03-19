@@ -1,0 +1,76 @@
+---
+const user = "user";
+const host = "Thang";
+let location = "~";
+const { id } = Astro.props;
+---
+
+<command-line>
+  <form id={id} class="flex">
+    <label class="flex">
+      <p class="text-red-400">[</p>
+      <p class="text-green-200">{user}</p>
+      <p class="text-red-400">@</p>
+      <p class="text-blue-200">{host}</p>
+      <p class="text-red-400">]:{location}$&nbsp;</p>
+      <input
+        class="border-none focus:outline-0"
+        type="text"
+        id=`input-${id}`
+        autocomplete="off"
+        autocapitalize="off"
+      />
+    </label>
+  </form>
+</command-line>
+
+<script>
+  import { Stdin, Stdout, AppendCommand } from "../utils/commands/index";
+
+  class CommandLine extends HTMLElement {
+    connectedCallback() {
+      const term = this.querySelector("form");
+      const input = this.querySelector("input");
+      input!.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          const value = input!.value.toString();
+          const stdin = new Stdin();
+          const stdout = new Stdout();
+          // Execute command
+          const appendCommand = new AppendCommand(term!, stdout, value);
+          // History
+          stdin.executeCommand(appendCommand);
+
+          console.log(stdin, stdout);
+
+
+          /* const { data, error } = await actions.checkCommand({ value });
+          if (!error) {
+          const p = document.createElement("p");
+          p.classList = "response";
+          p.innerHTML = data;
+          p.innerHTML = input!.value;
+          form?.parentElement?.insertAdjacentElement("afterend", p);
+          const cli = form?.parentNode;
+          cloneCLI(cli);
+          } */
+        }
+      });
+    }
+  }
+  customElements.define("command-line", CommandLine);
+
+  function cloneCLI(cli: ParentNode | null | undefined) {
+    const clone = cli?.cloneNode(true) as HTMLElement;
+    const clonedForm = clone.firstElementChild;
+    const newId = (parseInt(clonedForm!.id) + 1).toString();
+    clonedForm!.id = newId;
+    const clonedInput = clonedForm?.querySelector("input");
+    clonedInput!.id = `form-${newId}`;
+    clonedInput!.value = "";
+    const parent = cli?.parentElement;
+    parent?.insertAdjacentElement("beforeend", clone);
+    clonedInput?.focus();
+  }
+</script>
