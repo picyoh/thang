@@ -25,11 +25,11 @@ const { id } = Astro.props;
 </command-line>
 
 <script>
-  import { Stdin, Stdout, AppendCommand } from "../utils/commands/index";
+  import { Stdin, Stdout, AppendCommand, CloneCLi, CheckCommand } from "../utils/commands/index";
 
   class CommandLine extends HTMLElement {
     connectedCallback() {
-      const term = this.querySelector("form");
+      const currentCli = this.querySelector("form");
       const input = this.querySelector("input");
       input!.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
@@ -38,29 +38,22 @@ const { id } = Astro.props;
           const stdin = new Stdin();
           const stdout = new Stdout();
           // Execute command
-          const appendCommand = new AppendCommand(term!, stdout, value);
-          // History
-          stdin.executeCommand(appendCommand);
+          const append = new AppendCommand(currentCli!, value);
+          const cliCont = currentCli?.parentNode;
+          const clone = new CloneCLi(cliCont!);
+
+          const check = new CheckCommand(value);
+          stdin.executeCommand(append);
+          stdin.executeCommand(clone);
+          stdin.executeCommand(check)
 
           console.log(stdin, stdout);
-
-
-          /* const { data, error } = await actions.checkCommand({ value });
-          if (!error) {
-          const p = document.createElement("p");
-          p.classList = "response";
-          p.innerHTML = data;
-          p.innerHTML = input!.value;
-          form?.parentElement?.insertAdjacentElement("afterend", p);
-          const cli = form?.parentNode;
-          cloneCLI(cli);
-          } */
         }
       });
     }
   }
   customElements.define("command-line", CommandLine);
-
+// Move cloneCLi
   function cloneCLI(cli: ParentNode | null | undefined) {
     const clone = cli?.cloneNode(true) as HTMLElement;
     const clonedForm = clone.firstElementChild;
