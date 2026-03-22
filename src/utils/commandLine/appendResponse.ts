@@ -13,7 +13,7 @@ export class AppendResponse implements Command {
   }
 
   execute(): void {
-    const container = document.createElement("p");
+    const container = document.createElement("pre");
     container.classList = "response";
     container.innerHTML = this.response;
     this.form.insertAdjacentElement("beforeend", container);

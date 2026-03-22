@@ -1,3 +1,3 @@
-export function listFiles() {
+export function list() {
     return "list";
 }

@@ -1,5 +1,6 @@
 import type Command from "./index";
-import { listFiles } from "./commands/ls";
+import { echo } from "./commands/echo";
+import { list } from "./commands/ls";
 
 // Check command
 export class Dispatch implements Command {
@@ -14,13 +15,18 @@ export class Dispatch implements Command {
   execute(): string {
     // Decompose command
     const decomposed = this.input.split(" ");
+    console.log(decomposed);
     const commandName = decomposed[0];
-    //const option = decomposed[1]
-    //const argument = decomposed[2];
+    const options = decomposed.filter((element) => element.startsWith("-"));
+    const args = decomposed.filter((element)=>
+      element !== commandName && !element.startsWith("-")).join(" ");
 
     switch (commandName) {
+      case "echo":
+        this.response = echo(options, args);
+        break;
       case "ls":
-        this.response = listFiles();
+        this.response = list();
         break;
       case "cat":
         break;
