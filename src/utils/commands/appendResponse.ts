@@ -1,14 +1,14 @@
-import type Command from "./command";
+import type Command from "./index";
 
 // Append response
 export class AppendResponse implements Command {
   private response: string;
 
   constructor(
-    private cli: HTMLFormElement,
+    private form: HTMLElement,
     response: string,
   ) {
-    this.cli = cli;
+    this.form = form;
     this.response = response;
   }
 
@@ -16,6 +16,6 @@ export class AppendResponse implements Command {
     const container = document.createElement("p");
     container.classList = "response";
     container.innerHTML = this.response;
-    this.cli.parentElement?.insertAdjacentElement("afterend", container);
+    this.form.insertAdjacentElement("beforeend", container);
   }
 }

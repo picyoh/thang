@@ -6,7 +6,7 @@ const { id } = Astro.props;
 ---
 
 <command-line>
-  <form id={id} class="flex">
+  <form id=`form-${id}` class="flex flex-col">
     <label class="flex">
       <p class="text-red-400">[</p>
       <p class="text-green-200">{user}</p>
@@ -14,9 +14,9 @@ const { id } = Astro.props;
       <p class="text-blue-200">{host}</p>
       <p class="text-red-400">]:{location}$&nbsp;</p>
       <input
-        class="border-none focus:outline-0"
+        class="focus:outline-0 w-full"
         type="text"
-        id=`input-${id}`
+        id=`input-${id}-0`
         autocomplete="off"
         autocapitalize="off"
       />
@@ -25,45 +25,31 @@ const { id } = Astro.props;
 </command-line>
 
 <script>
-  import { Stdin, Stdout, AppendCommand, CloneCLi, CheckCommand } from "../utils/commands/index";
-
+  import { Stdin, Stdout, handleCli } from "../utils/commands/index";
   class CommandLine extends HTMLElement {
+    stdin: Stdin;
+    stdout: Stdout;
+
+    constructor() {
+      super();
+      this.stdin = new Stdin;
+      this.stdout = new Stdout;
+    }
+
     connectedCallback() {
-      const currentCli = this.querySelector("form");
-      const input = this.querySelector("input");
-      input!.addEventListener("keydown", (e) => {
+      // TODO: stout needed ?
+      const form = this.querySelector("form");
+      form!.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
           e.preventDefault();
-          const value = input!.value.toString();
-          const stdin = new Stdin();
-          const stdout = new Stdout();
-          // Execute command
-          const append = new AppendCommand(currentCli!, value);
-          const cliCont = currentCli?.parentNode;
-          const clone = new CloneCLi(cliCont!);
-
-          const check = new CheckCommand(value);
-          stdin.executeCommand(append);
-          stdin.executeCommand(clone);
-          stdin.executeCommand(check)
-
-          console.log(stdin, stdout);
+          const inputs = this.querySelectorAll("input");
+          const lastInput = inputs[inputs.length -1];
+          const value = lastInput!.value.toString();
+          handleCli(form!, this.stdin, this.stdout, value);
+          lastInput.readOnly = true;
         }
       });
     }
   }
   customElements.define("command-line", CommandLine);
-// Move cloneCLi
-  function cloneCLI(cli: ParentNode | null | undefined) {
-    const clone = cli?.cloneNode(true) as HTMLElement;
-    const clonedForm = clone.firstElementChild;
-    const newId = (parseInt(clonedForm!.id) + 1).toString();
-    clonedForm!.id = newId;
-    const clonedInput = clonedForm?.querySelector("input");
-    clonedInput!.id = `form-${newId}`;
-    clonedInput!.value = "";
-    const parent = cli?.parentElement;
-    parent?.insertAdjacentElement("beforeend", clone);
-    clonedInput?.focus();
-  }
 </script>

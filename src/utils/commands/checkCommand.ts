@@ -1,6 +1,6 @@
-import type Command from "./command";
+import type Command from "./index";
 
-// Handle command
+// Check command
 export class CheckCommand implements Command {
   private input: string;
 
@@ -9,6 +9,7 @@ export class CheckCommand implements Command {
   }
 
   execute() : void{
-    console.log(this.input)
+    // TODO: Check command
+    //console.log(this.input);
   }
 }
