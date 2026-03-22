@@ -1,6 +1,7 @@
 import { AppendResponse } from "./appendResponse";
 import { CloneCli } from "./cloneCli";
-import { Dispatch } from "./dispatch"
+import { Dispatch } from "./dispatch";
+import { clear } from "./commands/clear";
 
 // Command Interface
 export default interface Command {
@@ -18,7 +19,7 @@ export class Stdout {
 export class Stdin {
   private history: string[] = [];
 
-  appendHistory(commandName : string){
+  appendHistory(commandName: string) {
     this.history.push(commandName);
   }
 
@@ -28,21 +29,33 @@ export class Stdin {
 }
 
 // forment
-export function handleCli(form: HTMLElement, stdin: Stdin, stdout: Stdout,value: string) {
+export function handleCli(
+  form: HTMLElement,
+  stdin: Stdin,
+  stdout: Stdout,
+  value: string,
+) {
   // Store command in history
-  stdin.appendHistory(value)
+  stdin.appendHistory(value);
 
-  // Execute command
-  const dispatch = new Dispatch(value);
-  stdin.executeCommand(dispatch);
-  const response = dispatch.response;
-  // Append Result
-  const append = new AppendResponse(form!, response);
-  stdin.executeCommand(append);
-  
-  // Append next command line
-  const clone = new CloneCli(form!);
-  stdin.executeCommand(clone);
+  // Exception clear
+  const commandName = value.split(" ")[0];
+  if (commandName !== "clear") {
+    // Execute command
+    const dispatch = new Dispatch(value);
+    stdin.executeCommand(dispatch);
+    const response = dispatch.response;
+    // Append Result
+    const append = new AppendResponse(form!, response);
+    stdin.executeCommand(append);
 
-  console.log(stdin, stdout);
+    // Append next command line
+    const clone = new CloneCli(form!);
+    stdin.executeCommand(clone);
+    // TODO: remove log
+    console.log(stdin, stdout);
+  } else {
+    // Clear
+    clear(form);
+  }
 }

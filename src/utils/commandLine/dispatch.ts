@@ -18,8 +18,9 @@ export class Dispatch implements Command {
     console.log(decomposed);
     const commandName = decomposed[0];
     const options = decomposed.filter((element) => element.startsWith("-"));
-    const args = decomposed.filter((element)=>
-      element !== commandName && !element.startsWith("-")).join(" ");
+    const args = decomposed
+      .filter((element) => element !== commandName && !element.startsWith("-"))
+      .join(" ");
 
     switch (commandName) {
       case "echo":
