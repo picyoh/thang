@@ -25,7 +25,7 @@ const { id } = Astro.props;
 </command-line>
 
 <script>
-  import { Stdin, Stdout, handleCli } from "../utils/commands/index";
+  import { Stdin, Stdout, handleCli } from "../utils/commandLine/index";
   class CommandLine extends HTMLElement {
     stdin: Stdin;
     stdout: Stdout;
@@ -37,7 +37,6 @@ const { id } = Astro.props;
     }
 
     connectedCallback() {
-      // TODO: stout needed ?
       const form = this.querySelector("form");
       form!.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {

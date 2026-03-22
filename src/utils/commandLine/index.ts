@@ -1,6 +1,6 @@
 import { AppendResponse } from "./appendResponse";
 import { CloneCli } from "./cloneCli";
-import { CheckCommand } from "./checkCommand"
+import { Dispatch } from "./dispatch"
 
 // Command Interface
 export default interface Command {
@@ -9,8 +9,7 @@ export default interface Command {
 
 // Receiver : Stdout
 export class Stdout {
-  // TODO: check how it works
-  checkCommand() {}
+  Dispatch() {}
   appendResponse() {}
   cloneform() {}
 }
@@ -34,11 +33,11 @@ export function handleCli(form: HTMLElement, stdin: Stdin, stdout: Stdout,value:
   stdin.appendHistory(value)
 
   // Execute command
-  const check = new CheckCommand(value);
-  stdin.executeCommand(check);
-  //TODO: Change value to response
+  const dispatch = new Dispatch(value);
+  stdin.executeCommand(dispatch);
+  const response = dispatch.response;
   // Append Result
-  const append = new AppendResponse(form!, value);
+  const append = new AppendResponse(form!, response);
   stdin.executeCommand(append);
   
   // Append next command line

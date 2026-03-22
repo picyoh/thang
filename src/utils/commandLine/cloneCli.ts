@@ -8,7 +8,6 @@ export class CloneCli implements Command {
 
   execute(): void {
     // Get cli
-    console.log(this.form.querySelectorAll("label"))
     const labels = this.form.querySelectorAll("label");
     const child = labels[labels.length - 1];
     // Clone cli
