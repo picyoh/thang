@@ -1,6 +1,7 @@
 import type Command from "./index";
 import { echo } from "./commands/echo";
 import { list } from "./commands/ls";
+import { help } from "./commands/help";
 
 // Check command
 export class Dispatch implements Command {
@@ -28,6 +29,9 @@ export class Dispatch implements Command {
         break;
       case "ls":
         this.response = list();
+        break;
+      case "help":
+        this.response = help();
         break;
       case "cat":
         break;

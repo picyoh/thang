@@ -1,0 +1,57 @@
+---
+//TODO: add minimize maximaze and closing buttons
+const { title } = Astro.props;
+const user = "user";
+const host = "Thang";
+let location = "~";
+---
+
+<div id={title} class="border min-h-64">
+  <h2 class="text-center border-b">{title}</h2>
+  <command-line>
+    <form id=`form-${title}` class="flex flex-col">
+      <label class="flex">
+        <p class="text-red-400">[</p>
+        <p class="text-green-200">{user}</p>
+        <p class="text-red-400">@</p>
+        <p class="text-blue-200">{host}</p>
+        <p class="text-red-400">]:{location}$&nbsp;</p>
+        <input
+          class="focus:outline-0 w-full"
+          type="text"
+          id=`input-${title}-0`
+          autocomplete="off"
+          autocapitalize="off"
+        />
+      </label>
+    </form>
+  </command-line>
+</div>
+<script>
+  import { Stdin, Stdout, handleCli } from "./utils/index";
+class CommandLine extends HTMLElement {
+  stdin: Stdin;
+  stdout: Stdout;
+
+  constructor() {
+    super();
+    this.stdin = new Stdin();
+    this.stdout = new Stdout();
+  }
+
+  connectedCallback() {
+    const form = this.querySelector("form");
+    form!.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        const inputs = this.querySelectorAll("input");
+        const lastInput = inputs[inputs.length - 1];
+        const value = lastInput!.value.toString();
+        handleCli(form!, this.stdin, this.stdout, value);
+        lastInput.readOnly = true;
+      }
+    });
+  }
+}
+customElements.define("command-line", CommandLine);
+</script>
