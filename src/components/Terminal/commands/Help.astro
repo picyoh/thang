@@ -1,0 +1,26 @@
+---
+import { getEntry, render } from "astro:content";
+//TODO: remove defaut tailwind style
+const { command } = Astro.props;
+const entry = await getEntry("terminal", command);
+const { Content } = await render(entry!);
+---
+
+<help-container>
+  <Content />
+</help-container>
+<script>
+  export class Help extends HTMLElement {
+    commandName: string;
+    constructor(commandName: string) {
+      super();
+      this.commandName = commandName;
+    }
+    connectedCallback() {
+      this.addEventListener("load", (e) => {
+        console.log("loaded")
+      });
+    }
+  }
+  customElements.define("help-container", Help);
+</script>

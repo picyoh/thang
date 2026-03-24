@@ -1,7 +1,6 @@
 import type Command from "./index";
-import { echo } from "./commands/echo";
-import { list } from "./commands/ls";
-import { help } from "./commands/help";
+import { echo } from "../commands/echo";
+import { list } from "../commands/ls";
 
 // Check command
 export class Dispatch implements Command {
@@ -29,21 +28,6 @@ export class Dispatch implements Command {
         break;
       case "ls":
         this.response = list();
-        break;
-      case "help":
-        this.response = help();
-        break;
-      case "cat":
-        break;
-      case "mkdir":
-      case "mv":
-      case "cp":
-      case "rm":
-      case "ln":
-      case "touch":
-      case "chmod":
-        // TODO: check right message on linux
-        this.response = "You don't have rights.";
         break;
       default:
         this.response = "This command doesn't exist here.";

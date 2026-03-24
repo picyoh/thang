@@ -1,5 +1,6 @@
 ---
 //TODO: add minimize maximaze and closing buttons
+//TODO: add content collection
 const { title } = Astro.props;
 const user = "user";
 const host = "Thang";
@@ -29,29 +30,29 @@ let location = "~";
 </div>
 <script>
   import { Stdin, Stdout, handleCli } from "./utils/index";
-class CommandLine extends HTMLElement {
-  stdin: Stdin;
-  stdout: Stdout;
+  class CommandLine extends HTMLElement {
+    stdin: Stdin;
+    stdout: Stdout;
 
-  constructor() {
-    super();
-    this.stdin = new Stdin();
-    this.stdout = new Stdout();
-  }
+    constructor() {
+      super();
+      this.stdin = new Stdin();
+      this.stdout = new Stdout();
+    }
 
-  connectedCallback() {
-    const form = this.querySelector("form");
-    form!.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        const inputs = this.querySelectorAll("input");
-        const lastInput = inputs[inputs.length - 1];
-        const value = lastInput!.value.toString();
-        handleCli(form!, this.stdin, this.stdout, value);
-        lastInput.readOnly = true;
-      }
-    });
+    connectedCallback() {
+      const form = this.querySelector("form");
+      form!.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          const inputs = this.querySelectorAll("input");
+          const lastInput = inputs[inputs.length - 1];
+          const value = lastInput!.value.toString();
+          handleCli(form!, this.stdin, this.stdout, value);
+          lastInput.readOnly = true;
+        }
+      });
+    }
   }
-}
-customElements.define("command-line", CommandLine);
+  customElements.define("command-line", CommandLine);
 </script>

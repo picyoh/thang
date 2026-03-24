@@ -2,11 +2,11 @@ import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
 import { z } from "astro/zod";
 
-const doc = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "./src/data/doc" }),
+const terminal = defineCollection({
+  loader: glob({pattern: "**/*.md", base: "./src/datas/terminal"}),
   schema: z.object({
     title: z.string(),
   })
-});
+})
 
-export const collections = { doc };
+export const collections = { terminal };

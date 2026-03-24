@@ -1,6 +1,12 @@
 @import "tailwindcss";
 @import "@fontsource/mononoki";
 
+@layer base {
+  pre{
+    background: 
+  }
+}
+
 @theme {
   --font-mono: "Mononoki", sans-serif;
 }

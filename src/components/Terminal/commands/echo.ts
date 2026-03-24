@@ -1,3 +1,5 @@
+import * as help from "../../../datas/terminal/echo.md"
+
 export function echo(options: Array<string>, args: string) {
   // Remove all quotes
   let response = args.replaceAll('"', "").replaceAll("'", "");
@@ -24,8 +26,12 @@ export function echo(options: Array<string>, args: string) {
   } else if (options[0] === "\c") {
     // no output
     return "";
+  } else if(options[0] === "--help"){
+    // Display help (echo.md)
+    console.log(help)
+    return "--help";
   } else {
     // Wrong options
-    return "this option doesn't exist";
+    return "This option doesn't exist on echo";
   }
 }

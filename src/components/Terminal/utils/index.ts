@@ -1,7 +1,7 @@
 import { AppendResponse } from "./appendResponse";
 import { CloneCli } from "./cloneCli";
 import { Dispatch } from "./dispatch";
-import { clear } from "./commands/clear";
+import { clear } from "../commands/clear";
 
 // Command Interface
 export default interface Command {
@@ -29,8 +29,6 @@ export class Stdin {
 }
 
 // Client
-
-
 export function handleCli(
   form: HTMLElement,
   stdin: Stdin,
