@@ -1,0 +1,34 @@
+---
+import { Icon } from "astro-iconify";
+const { type, format, icon, size } = Astro.props;
+---
+
+<time-component class="flex items-center" data-type={type} data-format={format}>
+  {icon !== undefined && <Icon name={icon} size={size} />}
+  <span id=`${type}-container`></span>
+</time-component>
+
+<script>
+  import { handleTimeComponent } from "./time";
+
+  class TimeComponent extends HTMLElement {
+    constructor() {
+      super();
+      this.startEventTrigger();
+    }
+    startEventTrigger() {
+      setInterval(() => {
+        this.dispatchEvent(
+          new CustomEvent("time", {
+            detail: { message: "Event triggered!" },
+            bubbles: false,
+            composed: true,
+          }),
+        );
+        handleTimeComponent(this.dataset.type!, this.dataset.format!);
+      }, 1000);
+      handleTimeComponent(this.dataset.type!, this.dataset.format!)
+    }
+  }
+  customElements.define("time-component", TimeComponent);
+</script>

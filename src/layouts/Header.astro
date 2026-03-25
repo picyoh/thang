@@ -1,6 +1,7 @@
 ---
 import { Icon } from "astro-iconify";
-//TODO: mobile styling
+import Time from "../components/Time/Time.astro";
+//TODO: mobile styling (duplicate Time and display it conditionnaly with width check+)
 ---
 
 <header class="relative flex justify-between item-center border">
@@ -17,18 +18,17 @@ import { Icon } from "astro-iconify";
     <span class="flex items-center">
       <Icon name="material-symbols:no-sound-rounded" size={18} />
     </span>
-    <span class="flex items-center">
-      <Icon
-        name="material-symbols:nest-clock-farsight-analog-outline-rounded"
-        size={18}
-      />
-      <span id="time"></span>
-    </span>
-    <span class="flex items-center">
-      <Icon name="material-symbols:calendar-month-rounded" size={18} />
-      <span id="date"></span>
-    </span>
-</div>
+   <Time
+      type="time"
+      format="hh:mm:ss"
+      icon="material-symbols:nest-clock-farsight-analog-outline-rounded"
+      size={18}
+    />
+    <Time
+      type="date"
+      format="dd/mm/yy"
+      icon="material-symbols:calendar-month-rounded"
+      size={18}
+    />
+  </div>
 </header>
-
-<script src="/src/utils/time"></script>
