@@ -1,14 +1,14 @@
 ---
 //TODO: add minimize maximaze and closing buttons
 //TODO: add content collection
+import Window from "../../layouts/Window.astro";
 const { title } = Astro.props;
 const user = "user";
 const host = "Thang";
 let location = "~";
 ---
 
-<div id={title} class="border min-h-64">
-  <h2 class="text-center border-b">{title}</h2>
+<Window title={title}>
   <command-line>
     <form id=`form-${title}` class="flex flex-col">
       <label class="flex">
@@ -27,7 +27,8 @@ let location = "~";
       </label>
     </form>
   </command-line>
-</div>
+</Window>
+
 <script>
   import { Stdin, Stdout, handleCli } from "./utils/index";
   class CommandLine extends HTMLElement {

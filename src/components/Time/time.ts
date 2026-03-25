@@ -16,7 +16,6 @@ function formatTime(
     // Date
     formated = format.replace("dd", first).replace("mm", second).replace("yy", third);
   }
-  console.log(formated, first, second, third)
   return formated;
 }
 
