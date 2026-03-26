@@ -1,0 +1,40 @@
+---
+import Icon from "astro-iconify";
+const { type, title, size } = Astro.props;
+const icons: Record<string, string> = {
+  minimize: "material-symbols:minimize-rounded",
+  maximize: "material-symbols:square-outline-rounded",
+  close: "material-symbols:close-rounded",
+} as const;
+
+const iconName = icons[type];
+---
+
+<button type="button" id=`${type}-${title}` window-buttons>
+  <Icon name={iconName} size={size} class="pointer-events-none" />
+</button>
+
+<script>
+  const buttons = document.querySelectorAll("[window-buttons]");
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      const target = e.target as HTMLButtonElement;
+      const splitId = target.id.split("-");
+      const action = splitId[0];
+      const windowId = splitId[1];
+      const windowElement = document.getElementById(windowId);
+      if (action === "minimize") {
+        // Hide element
+        windowElement?.classList.add("hidden");
+      } else if (action === "maximize") {
+        // Diplay above other elements in full size
+        windowElement?.classList.add("absolute", "w-full", "h-full", "z-1");
+      } else if (action === "close") {
+        // Remove Element
+        const parentNode = windowElement?.parentElement;
+        parentNode?.removeChild(windowElement!)
+      }
+    });
+  });
+</script>
