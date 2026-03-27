@@ -1,16 +1,18 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Terminal from "../components/Terminal/Terminal.astro";
-import Help from "../components/Terminal/commands/Help.astro";
+import Taskbar from "../components/Taskbar/Taskbar.astro";
 //TODO: add Terminal (neofetch, tree, pipewire) + style aside(20) main(80)
-const command = "echo";
 ---
 
 <Layout>
-  <aside>
-	<Terminal title="Neofetch"/>
+  <aside class="h-full">
+	<Terminal title="Fastfetch"/>
   </aside>
-  <main>
+  <main class="h-full">
     <Terminal title="Terminal"/>
   </main>
+  <article>
+    <Taskbar />
+  </article>
 </Layout>

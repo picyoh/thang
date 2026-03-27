@@ -1,0 +1,46 @@
+---
+import Icon from "astro-iconify";
+//const { icons } = Astro.props;
+
+// TODO: change mocked icons
+const icons = [
+  { title: "Fastfetch", name: "id-card-rounded" },
+  { title: "Terminal", name: "terminal-rounded" },
+];
+const size = 24;
+---
+
+<section id="taskbar" class="border flex justify-center gap-5">
+  {
+    icons.map((icon) => (
+      <button id={icon.title}>
+        <Icon
+          name={`material-symbols:${icon.name}`}
+          size={size}
+          class="pointer-events-none"
+        />
+      </button>
+    ))
+  }
+  <button id="addTerminal">+</button>
+</section>
+
+<script>
+  import {addTerm} from "./addTerminal"
+  const main = document.querySelector("main");
+  addTerm(main!);
+  checkChanges();
+  // Observer
+  const observer = new MutationObserver((mutations) =>{
+    for (const mutation of mutations){
+      if (mutation.type === 'childList' && mutation.addedNodes.length) {
+        mutation.addedNodes.forEach(node => {
+          console.log(node)
+          if(node.nodeType !== Node.ELEMENT_NODE) return;
+        })
+      }
+    }
+  });
+
+  observer.observe(main!, {childList: true, subtree: true});
+</script>

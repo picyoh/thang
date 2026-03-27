@@ -1,11 +1,10 @@
 ---
-import Icon from "astro-iconify";
 import WindowButton from "../components/WindowButton.astro";
 const { title } = Astro.props;
 const size = 19;
 ---
 
-<div id={title} class="border min-h-64">
+<article id={title} class="window border min-h-64">
   <div class="text-center border-b relative">
     <h2 class="bg-stone-800">{title}</h2>
     <span class="absolute top-0 right-0 h-full flex items-center gap-1">
@@ -15,4 +14,4 @@ const size = 19;
     </span>
   </div>
   <slot />
-</div>
+</article>
