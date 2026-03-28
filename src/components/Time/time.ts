@@ -1,5 +1,4 @@
-// TODO: add short formats option
-// TODO: add Temporal Object instead of Date
+// TODO: add Temporal Object instead of Date ?
 
 function formatTime(
   type: string,
@@ -8,13 +7,18 @@ function formatTime(
   second: string,
   third: string,
 ) {
+  // TODO: adjust time and time to other formats ?
   let formated = "";
   if(type === "time"){
     // Time
     formated = format.replace("hh",first).replace("mm", second).replace("ss", third);
   }else if(type === "date"){
+    // add year format
+    const yearSplit = format.split("y");
+    const yearLength = yearSplit.filter((element)=> element === "").length;
+    const year = third.slice(yearLength, third.length);
     // Date
-    formated = format.replace("dd", first).replace("mm", second).replace("yy", third);
+    formated = format.replace("dd", first).replace("mm", second).replace("yy", year);
   }
   return formated;
 }

@@ -4,7 +4,7 @@ const icons = [
   { title: "Terminal", name: "terminal-rounded" },
 ];
 
-function addIcons(node: HTMLElement) {
+function cloneIcons(node: HTMLElement) {
   const iconBar = document.getElementById("iconBar");
   const nodeId = node.id;
   icons.forEach((icon) => {
@@ -23,7 +23,7 @@ const observer = new MutationObserver((mutations) => {
       mutation.addedNodes.forEach((node) => {
         if (node.nodeType !== Node.ELEMENT_NODE) return;
         const newNode = node as HTMLElement;
-        addIcons(newNode);
+        cloneIcons(newNode);
       });
     }
   }

@@ -6,13 +6,11 @@ import Taskbar from "../components/Taskbar/Taskbar.astro";
 ---
 
 <Layout>
-  <aside class="h-full">
-	<Terminal title="Fastfetch"/>
-  </aside>
-  <main class="h-full">
-    <Terminal title="Terminal"/>
+  <main class="flex flex-wrap gap-2">
+      <Terminal title="Fastfetch" class="col-span-1 row-span-1"/>
+      <Terminal title="Terminal" class="col-span-2 row-span-5"/>
+    <article class="flex-1">
+      <Taskbar />
+    </article>
   </main>
-  <article>
-    <Taskbar />
-  </article>
 </Layout>
