@@ -1,7 +1,9 @@
 ---
+import Taskbar from "../components/Taskbar/Taskbar.astro";
 const year = new Date().getFullYear();
 ---
 
-<footer class="fixed w-full bottom-0">
-  <p class="relative text-xs m-auto w-fit left-0 right-0">Thang {year}</p>
+<footer class="w-full bottom-0">
+  <Taskbar />
+  <p class="text-xs m-auto w-fit left-0 right-0">Thang {year}</p>
 </footer>

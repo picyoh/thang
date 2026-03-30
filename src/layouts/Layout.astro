@@ -19,9 +19,11 @@ const description = "mocked description";
     <meta name="generator" content={Astro.generator} />
     <title>Thang</title>
   </head>
-  <body class="font-mono bg-stone-800 text-stone-100">
+  <body class="font-mono bg-stone-800 text-stone-100 h-dvh flex flex-col">
     <Header />
-    <slot />
+    <div class="flex gap-2 p-2 h-full">
+      <slot />
+    </div>
     <Footer />
   </body>
 </html>
