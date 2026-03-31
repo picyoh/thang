@@ -3,7 +3,7 @@ const icons = [
   { title: "Fastfetch", name: "id-card-rounded" },
   { title: "Terminal", name: "terminal-rounded" },
 ];
-
+// TODO: check duplicated IDs
 function cloneIcons(node: HTMLElement) {
   const iconBar = document.getElementById("iconBar");
   const nodeId = node.id;

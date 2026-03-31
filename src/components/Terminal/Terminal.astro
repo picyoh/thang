@@ -1,14 +1,14 @@
 ---
-//TODO: add minimize maximaze and closing buttons
 //TODO: add content collection
 import Window from "../../layouts/Window.astro";
 const { title } = Astro.props;
 const user = "user";
 const host = "Thang";
 let location = "~";
+const className = title.split("-")[0].toLowerCase();
 ---
 
-<Window title={title}>
+<Window title={title} className={className}>
   <command-line>
     <form id=`form-${title}` class="flex flex-col">
       <label class="flex">

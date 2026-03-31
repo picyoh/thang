@@ -1,10 +1,10 @@
 ---
 import WindowButton from "../components/WindowButton.astro";
-const { title } = Astro.props;
+const { title, className } = Astro.props;
 const size = 19;
 ---
 
-<article id={title} class="window border grow self-stretch">
+<article id={title} class=`${className} window border grow self-stretch`>
   <div class="text-center border-b relative">
     <h2 class="bg-stone-800">{title}</h2>
     <span class="absolute top-0 right-0 h-full flex items-center gap-1">
