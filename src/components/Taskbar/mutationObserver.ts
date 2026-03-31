@@ -3,6 +3,7 @@ const icons = [
   { title: "Fastfetch", name: "id-card-rounded" },
   { title: "Terminal", name: "terminal-rounded" },
 ];
+
 function cloneIcons(node: HTMLElement) {
   // Get Icon bar
   const iconBar = document.getElementById("iconBar");

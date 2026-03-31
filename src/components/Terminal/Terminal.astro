@@ -1,7 +1,7 @@
 ---
 //TODO: add content collection
 import Window from "../../layouts/Window.astro";
-const { title } = Astro.props;
+const { title, command } = Astro.props;
 const user = "user";
 const host = "Thang";
 let location = "~";
@@ -21,6 +21,7 @@ const className = title.split("-")[0].toLowerCase();
           class="focus:outline-0 w-full"
           type="text"
           id=`input-${title}-0`
+          value={command}
           autocomplete="off"
           autocapitalize="off"
         />
@@ -42,14 +43,35 @@ const className = title.split("-")[0].toLowerCase();
     }
 
     connectedCallback() {
+      // Get form
       const form = this.querySelector("form");
+      // Simulate enter keydown for named terms
+      window.addEventListener("load", (e) => {
+        // Get input value
+        const firstInput = form?.querySelector("input");
+        const firstValue = firstInput?.value;
+        // Check value
+        if(firstValue !== ""){
+          // Create event
+          const event = new KeyboardEvent('keydown', {key: 'Enter'});
+          // Dispatch event
+          form?.dispatchEvent(event);
+        }
+      });
+
+      // Event Listener on keydown
       form!.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
           e.preventDefault();
+          // Get all inputs
           const inputs = this.querySelectorAll("input");
+          // Get the last
           const lastInput = inputs[inputs.length - 1];
+          // Get value
           const value = lastInput!.value.toString();
+          // Handle command line
           handleCli(form!, this.stdin, this.stdout, value);
+          // Set last input to read only
           lastInput.readOnly = true;
         }
       });
