@@ -1,7 +1,6 @@
 export function clear(form: HTMLElement) {
   const firstCli = form.firstElementChild;
   const firstInput = firstCli!.querySelector("input");
-  console.log(firstInput!.id)
   firstInput!.value = "";
   firstInput!.readOnly = false;
   firstInput!.focus();
