@@ -20,7 +20,7 @@ function cloneIcons(node: HTMLElement) {
       // Set id
       clonedNode.id = nodeId;
       // Insert
-      iconBar?.insertAdjacentElement("beforeend", clonedNode!);
+      iconBar?.appendChild( clonedNode!);
     }
   });
 }

@@ -29,13 +29,13 @@ export function addTerm(main: HTMLElement) {
     title!.textContent = newId;
     // Modify buttons ids
     const buttons = clonedTerm.querySelectorAll("button");
-    buttons.forEach(button => {
+    buttons.forEach((button) => {
       const mainId = button.id.split("-")[0];
-      button.id = `${mainId}-${newId}`
-    })
+      button.id = `${mainId}-${newId}`;
+    });
     // Clear new term
-    clear(clonedTerm.querySelector("form")!)
+    clear(clonedTerm.querySelector("form")!);
     // Insert
-    main?.insertAdjacentElement("beforeend", clonedTerm!);
+    main?.appendChild(clonedTerm!);
   });
 }

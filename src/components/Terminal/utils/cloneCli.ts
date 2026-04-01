@@ -23,7 +23,7 @@ export class CloneCli implements Command {
     clonedInput!.id = newId;
     clonedInput!.value = "";
     // Insert clone
-    this.form?.insertAdjacentElement("beforeend", clone);
+    this.form?.appendChild(clone);
     // Remove disabled
     // Add focus
     clonedInput?.focus();
