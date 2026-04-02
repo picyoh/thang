@@ -22,8 +22,8 @@ export class Dispatch implements Command {
       .filter((element) => element !== commandName && !element.startsWith("-"))
       .join(" ");
 
-      // TODO: remove log
-      console.log(commandName)
+    // TODO: remove log
+    console.log(commandName);
 
     switch (commandName) {
       case "echo":
@@ -36,7 +36,7 @@ export class Dispatch implements Command {
         this.response = fastfetch();
         break;
       default:
-        console.error(`There's an error with : '${commandName}'`)
+        console.error(`There's an error with : '${commandName}'`);
         this.response = "This command doesn't exist here.";
     }
     return this.response;
