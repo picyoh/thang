@@ -2,7 +2,7 @@ import type Command from "./index";
 
 // Append response
 export class AppendResponse implements Command {
-  private response: string;
+  private response: string | HTMLPreElement;
 
   constructor(
     private form: HTMLElement,
@@ -13,9 +13,13 @@ export class AppendResponse implements Command {
   }
 
   execute(): void {
-    const container = document.createElement("pre");
-    container.classList = "response";
-    container.textContent = this.response;
-    this.form.appendChild(container);
+    if(typeof this.response === 'string'){
+      const container = document.createElement("pre");
+      container.classList = "response";
+      container.textContent = this.response;
+      this.form.appendChild(container);
+    }else {
+      this.form.appendChild(this.response);
+    }
   }
 }

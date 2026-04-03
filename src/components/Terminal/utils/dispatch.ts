@@ -6,7 +6,7 @@ import { fastfetch } from "../commands/fastfetch";
 // Check command
 export class Dispatch implements Command {
   private input: string;
-  response: string;
+  response: string | HTMLPreElement;
 
   constructor(input: string) {
     this.input = input;

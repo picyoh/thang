@@ -1,5 +1,6 @@
-function upTime() {
+function upTime(): string {
   console.log(window);
+  return "ok";
 }
 
 // TODO: change banner
@@ -38,10 +39,31 @@ export function fastfetch() {
     { name: "Locale", value: "en-US.UTF-8" },
   ];
   const splitedBanner = banner.split("\n").filter((element) => element !== "");
-  let response = "";
+  let response = document.createElement("pre");
 
   for (let i = 0; i < splitedBanner.length; i++) {
-    response += `${splitedBanner[i]} ${infos[i].name}: ${infos[i].value} \n`;
+    // Create Line container
+    const lineElement = document.createElement("span");
+    // Create banner tag
+    const bannerElement = document.createElement("span");
+    bannerElement.style.color ="darkcyan"
+    bannerElement.textContent = `${splitedBanner[i]} `;
+    lineElement.appendChild(bannerElement)
+    // Create strong tag
+    const strongELement = document.createElement("strong");
+    // Add style to strong tag
+    strongELement.style.color = "indianred";
+    // Append banner and title
+    strongELement.textContent = `${infos[i].name}: `;
+    lineElement.appendChild(strongELement);
+    // Create value elements
+    const valueElement = document.createElement("span");
+    // Add info values
+    valueElement.textContent = `${infos[i].value}\n`;
+    lineElement.appendChild(valueElement);
+    // Append to response
+    response.appendChild(lineElement);
   }
+  console.log(response)
   return response;
 }
