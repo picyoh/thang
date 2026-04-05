@@ -1,6 +1,12 @@
 function upTime(): string {
-  console.log(window);
-  return "ok";
+  const pNow = Math.floor(performance.now());
+  const millis = pNow % 1000;
+  const calcSec = Math.floor(pNow / 1000);
+  const seconds = calcSec > 60 ? calcSec % 60 : calcSec;
+  const minutes = Math.floor(calcSec / 60);
+  const uptime = `${minutes > 0 ? minutes.toString() + 'min ': ""}${seconds > 0 ? seconds.toString() + 's ': ""}${millis} ms`
+  console.log(uptime)
+  return uptime;
 }
 
 // TODO: change banner

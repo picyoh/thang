@@ -13,7 +13,7 @@ export class Dispatch implements Command {
     this.response = "";
   }
 
-  execute(): string {
+  execute(): string | HTMLPreElement {
     // Decompose command
     const decomposed = this.input.split(" ");
     const commandName = decomposed[0];
