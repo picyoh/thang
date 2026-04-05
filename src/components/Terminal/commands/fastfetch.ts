@@ -9,6 +9,10 @@ function upTime(): string {
   return uptime;
 }
 
+function getLocaleLang (): string {
+  return navigator.language;
+}
+
 // TODO: change banner
 const banner = `
   ****        * 
@@ -23,9 +27,8 @@ const banner = `
       ***   **  
         *****   
 `;
+
 //TODO: get theme from tailwind
-//TODO: get locale lang
-//TODO: align on left name colored values in another
 
 export function fastfetch() {
   const infos = [
@@ -42,18 +45,22 @@ export function fastfetch() {
     { name: "Icons", value: "Material Design" },
     { name: "Font", value: "Mononoki" },
     { name: "Terminal", value: "TsTerm" },
-    { name: "Locale", value: "en-US.UTF-8" },
+    { name: "Locale", value: getLocaleLang() },
   ];
   const splitedBanner = banner.split("\n").filter((element) => element !== "");
   let response = document.createElement("pre");
+  const colorStep = Math.round(360 / splitedBanner.length);
 
   for (let i = 0; i < splitedBanner.length; i++) {
     // Create Line container
     const lineElement = document.createElement("span");
     // Create banner tag
     const bannerElement = document.createElement("span");
-    bannerElement.style.color ="darkcyan"
+    // Add random color
+    bannerElement.style.color = `oklch(0.7 0.15 ${colorStep * i})`;
+    // Add Text content
     bannerElement.textContent = `${splitedBanner[i]} `;
+    // Append tag
     lineElement.appendChild(bannerElement)
     // Create strong tag
     const strongELement = document.createElement("strong");
